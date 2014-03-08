@@ -36,6 +36,7 @@ def draw
 	
 end
 
+#checks neighbors
 def change_state(row, col)
 	neighbors = 0
 	
