@@ -3,24 +3,30 @@ attr_reader :cells, :cell_size, :cell_num
 
 def setup
 	size 600, 600
-	frameRate 15
-	@cell_num = 60
-	@cell_size = 10
+	frameRate 5
+	@cell_num = 30
+	@cell_size = 20
 	@cells = Array.new(@cell_num){|i| Array.new(@cell_num){|j| rand(2)}}
 end
 
 def draw
 
-	background(255)
+	background 0 
 
 	@cells.each_with_index do |row, i|
 		row.each_with_index do |col, j|
-			if( col == 0 )
-				fill(255, 255, 255)
-			else
-				fill(255, 0, 0)
+			fill 0
+			strokeWeight 2
+			if col == 0 #if starting opposite
+				stroke 255
+				ellipse i * @cell_size, j * @cell_size, 10, 10
+				line i * @cell_size + @cell_size, j * @cell_size, i * @cell_size , j * @cell_size + @cell_size
+			else #if starting normal
+				stroke 255, 0, 0
+				ellipse i * @cell_size, j * @cell_size, 10, 10
+				stroke 255
+				line i * @cell_size + 5, j * @cell_size + 5, i * @cell_size + @cell_size, j * @cell_size + @cell_size
 			end
-			rect i * @cell_size, j * @cell_size, @cell_size, @cell_size
 		end
 	end
 
